@@ -14,19 +14,21 @@ for (const file of readdirSync(`${__dirname}/../commands/`)) {
 
 export async function run(interaction: Interaction) {
     if (interaction.isCommand()) {
+        let success = true
+
         const command = commands[interaction.commandName]
 
-        if(!command) {
-            await interaction.reply(`This command is invalid?\n(DM <@${dev}> if this happens a lot)`)  
-            return
-        }  
-
+        if(!command) return interaction.reply(`This command is invalid?\n(DM <@${dev}> if this happens a lot)`)
+        
         try {
             command(interaction)
         }
         catch(e) {
             interaction.reply(`Ran into an error :c\n\n\`\`\`${e}\`\`\``)
+            success = false
         }
+
+        console.log(`${interaction.user.tag} ran ${interaction.commandName}; ${success ? "Success" : "Failure"}`)
     } 
     else return
 }
