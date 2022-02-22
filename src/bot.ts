@@ -1,6 +1,6 @@
 import { Client } from "discord.js"
 import { readdirSync } from "fs"
-import config from "./config.json"
+import { token } from "./config.json"
 
 //const events: {[key: string]: object} = {}
 
@@ -18,4 +18,4 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user?.tag}!`)
 })
 
-client.login(config.token)
+client.login(token)
