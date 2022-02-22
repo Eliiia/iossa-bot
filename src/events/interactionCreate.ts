@@ -1,4 +1,4 @@
-import { Interaction } from "discord.js"
+import { Interaction, Client } from "discord.js"
 import { readdirSync } from "fs"
 import { dev, devGuildId } from "../config.json"
 
@@ -12,7 +12,7 @@ for (const file of readdirSync(`${__dirname}/../commands/`)) {
     console.log(`Loaded in ${file}`)
 }
 
-export async function run(interaction: Interaction) {
+export async function run(client: Client, interaction: Interaction) {
     if (interaction.isCommand()) {
         if(interaction.guildId === devGuildId && interaction.user.id !== dev) {
             return interaction.reply("This is a dev-only command!")
@@ -25,7 +25,7 @@ export async function run(interaction: Interaction) {
         if(!command) return interaction.reply(`This command is invalid?\n(DM <@${dev}> if this happens a lot)`)
         
         try {
-            command(interaction)
+            command(interaction, client)
         }
         catch(e) {
             interaction.reply(`Ran into an error :c\n\n\`\`\`${e}\`\`\``)

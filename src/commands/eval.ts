@@ -1,6 +1,6 @@
-import { CommandInteraction, MessageEmbed } from "discord.js"
+import { CommandInteraction, MessageEmbed, Client } from "discord.js"
 
-export async function run(interaction: CommandInteraction) {
+export async function run(interaction: CommandInteraction, client: Client) {
     const expression = interaction.options.getString("expression") || ""
 
     if(expression === "") return interaction.reply("You didn't put in an expression :c")

@@ -10,7 +10,7 @@ for (const file of readdirSync(`${__dirname}/events`)) {
     const event = require(`./events/${file}`)
     const name = file.split(".")[0]
     
-    client.on(name, (...args) => event.run(...args))
+    client.on(name, (...args) => event.run(client, ...args))
 }
 
 client.once('ready', () => {
