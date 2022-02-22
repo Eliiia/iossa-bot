@@ -2,7 +2,7 @@ import { Client } from "discord.js"
 import { readdirSync } from "fs"
 import { token } from "./config.json"
 
-//const events: {[key: string]: object} = {}
+console.log("\n---\n")
 
 const client = new Client({ intents:  4611 })
 
@@ -15,7 +15,7 @@ for (const file of readdirSync(`${__dirname}/events`)) {
 }
 
 client.once('ready', () => {
-    console.log(`Logged in as ${client.user?.tag}!`)
+    console.log(`\nLogged in as ${client.user?.tag}!`)
 })
 
 client.login(token)
