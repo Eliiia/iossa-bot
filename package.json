@@ -1,0 +1,28 @@
+{
+  "name": "lossa-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/bot.js",
+  "scripts": {
+    "test": "nodemon src/bot.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eliiia/lossa-bot.git"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Eliiia/lossa-bot/issues"
+  },
+  "homepage": "https://github.com/Eliiia/lossa-bot#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
