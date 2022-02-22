@@ -1,6 +1,6 @@
 import { Interaction } from "discord.js"
 import { readdirSync } from "fs"
-import { dev } from "../config.json"
+import { dev, devGuildId } from "../config.json"
 
 const commands: {[key: string]: Function} = {}
 
@@ -14,6 +14,10 @@ for (const file of readdirSync(`${__dirname}/../commands/`)) {
 
 export async function run(interaction: Interaction) {
     if (interaction.isCommand()) {
+        if(interaction.guildId === devGuildId && interaction.user.id !== dev) {
+            return interaction.reply("This is a dev-only command!")
+        }
+
         let success = true
 
         const command = commands[interaction.commandName]
