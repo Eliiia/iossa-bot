@@ -8,7 +8,6 @@ const client = new Client({ intents:  4611 })
 
 for (const file of readdirSync(`${__dirname}/events`)) {
     const event = require(`./events/${file}`)
-    console.log
     const name = file.split(".")[0]
     
     client.on(name, (...args) => event.run(...args))
