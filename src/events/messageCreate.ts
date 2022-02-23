@@ -1,7 +1,21 @@
-import { Message, Client } from "discord.js"
+import { Message, Client, MessageActionRow, MessageButton, MessageEmbed } from "discord.js"
+import { dev } from "../config.json"
 
 export async function run(client: Client, message: Message) {
-    if (message.content === "ping") {
-        return message.reply("L")
+    if (message.content === "create-button" && message.author.id == dev) {
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId("create-ticket")
+                    .setLabel("Create Ticket")
+                    .setStyle("SUCCESS")
+            )
+        
+        const embed = new MessageEmbed()
+            .setColor("DEFAULT")
+            .setTitle("Tickets!")
+            .setDescription("Click/tap below to create a new ticket!")
+        
+        return message.channel.send({ embeds: [embed], components: [row] })
     }
 }
