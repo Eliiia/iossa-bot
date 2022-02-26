@@ -1,6 +1,6 @@
-import { Interaction, Client, CategoryChannel } from "discord.js"
+import { Interaction, Client } from "discord.js"
 import { readdirSync } from "fs"
-import { dev, devGuildId, ticketCategory, epoch } from "../config.json"
+import { dev, ticketCategory, epoch, modmail } from "../config.json"
 
 const commands: {[key: string]: Function} = {}
 
@@ -13,6 +13,8 @@ for (const file of readdirSync(`${__dirname}/../commands/`)) {
 }
 
 export async function run(client: Client, interaction: Interaction) {
+    if(interaction.channel?.type !== "GUILD_TEXT") return
+
     if (interaction.isCommand()) {
         let success = true
 
@@ -36,6 +38,7 @@ export async function run(client: Client, interaction: Interaction) {
             type: "GUILD_TEXT",
             parent: ticketCategory,
             permissionOverwrites: [
+                { id: modmail, allow: ["VIEW_CHANNEL"] },
                 { id: interaction.guild.id, deny: ["VIEW_CHANNEL"] },
                 { id: interaction.user.id, allow: ["VIEW_CHANNEL"] },
             ]
