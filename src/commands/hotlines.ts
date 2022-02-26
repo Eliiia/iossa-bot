@@ -6,7 +6,7 @@ export async function run(interaction: CommandInteraction, client: Client) {
         .setDescription("If you, or someone you know, are in an emergency situation, whatever that may be, please dial `911`, `999`, `112` or your local emergency number immediately.\nIf you are abroad or do not know the local emergency number, dial `999` or `112` and you will be connected to the local emergency services.\nThese numbers should work even without any signal.")
         .addField(
             "Suicide Hotlines",
-            "(If your country is not listed, [this](https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines) may help\n\n**UK:** `116 123` (Samaritans); or `0800 58 58 58` (CALM; men ages 15-35); or `111` (option 2)\n**USA**: `211` (emergency referrals to social and community services)\n**France:** `0800 235 236` (Professionals)\n**Germany:** `116 123`\n**Israel:** `1201`\n**Poland:** `89 19288`\n**Russia:** `007 (8202) 577-577` (Samaritans)\n**Sweden:** `90101`"
+            "(If your country is not listed, [this](https://en.wikipedia.org/wiki/List_of_suicide_crisis_lines) may help\n\n**UK:** `116 123` (Samaritans); or `0800 58 58 58` (CALM; men ages 15-35); or `111` (option 2)\n**USA**: `1-800-273-TALK (8255) (National Suicide Prevention Lifeline); or `211` (emergency referrals to social and community services)\n**France:** `0800 235 236` (Professionals)\n**Germany:** `116 123`\n**Israel:** `1201`\n**Poland:** `89 19288`\n**Russia:** `007 (8202) 577-577` (Samaritans)\n**Sweden:** `90101`"
         )
         .addField(
             "Text-Based Suicide Hotlines",
