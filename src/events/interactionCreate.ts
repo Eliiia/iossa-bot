@@ -14,10 +14,6 @@ for (const file of readdirSync(`${__dirname}/../commands/`)) {
 
 export async function run(client: Client, interaction: Interaction) {
     if (interaction.isCommand()) {
-        if (interaction.guildId === devGuildId && interaction.user.id !== dev) {
-            return interaction.reply("This is a dev-only command!")
-        }
-
         let success = true
 
         const command = commands[interaction.commandName]
