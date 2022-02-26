@@ -1,6 +1,6 @@
-import { Interaction, Client } from "discord.js"
+import { Interaction, Client, CategoryChannel } from "discord.js"
 import { readdirSync } from "fs"
-import { dev, devGuildId } from "../config.json"
+import { dev, devGuildId, ticketCategory, epoch } from "../config.json"
 
 const commands: {[key: string]: Function} = {}
 
@@ -14,7 +14,7 @@ for (const file of readdirSync(`${__dirname}/../commands/`)) {
 
 export async function run(client: Client, interaction: Interaction) {
     if (interaction.isCommand()) {
-        if(interaction.guildId === devGuildId && interaction.user.id !== dev) {
+        if (interaction.guildId === devGuildId && interaction.user.id !== dev) {
             return interaction.reply("This is a dev-only command!")
         }
 
@@ -34,5 +34,19 @@ export async function run(client: Client, interaction: Interaction) {
 
         console.log(`${interaction.user.tag} ran ${interaction.commandName}; ${success ? "Success" : "Failure"}`)
     } 
+
+    if (interaction.isButton()) {
+        interaction.guild?.channels.create(`ticket-${Date.now() - epoch}`, {
+            type: "GUILD_TEXT",
+            parent: ticketCategory,
+            permissionOverwrites: [
+                { id: interaction.guild.id, deny: ["VIEW_CHANNEL"] },
+                { id: interaction.user.id, allow: ["VIEW_CHANNEL"] },
+            ]
+        }).then(channel => {
+            interaction.reply({ content: `Created ticket <#${channel.id}>!`, ephemeral: true})
+        })
+    }
+
     else return
 }
