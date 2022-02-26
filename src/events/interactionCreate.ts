@@ -28,7 +28,7 @@ export async function run(client: Client, interaction: Interaction) {
             success = false
         }
 
-        console.log(`${interaction.user.tag} ran ${interaction.commandName}; ${success ? "Success" : "Failure"}`)
+        console.log(`${interaction.user.tag} ran /${interaction.commandName}; ${success ? "No error" : "Error"}`)
     } 
 
     if (interaction.isButton()) {
