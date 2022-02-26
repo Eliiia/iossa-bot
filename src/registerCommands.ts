@@ -17,6 +17,9 @@ import { token, clientId, mainGuildId, devGuildId } from "./config.json"
             new SlashCommandBuilder()
                 .setName("close")
                 .setDescription("Closes current ticket."),
+            new SlashCommandBuilder()
+                .setName("hotlines")
+                .setDescription("Lists hotlines."),
         ].map(command => command.toJSON()),
         dev: [
             new SlashCommandBuilder()
