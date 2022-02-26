@@ -4,6 +4,7 @@
   "description": "",
   "main": "build/bot.js",
   "scripts": {
+    "start": "tsc && node .",
     "test": "nodemon src/bot.ts"
   },
   "repository": {
