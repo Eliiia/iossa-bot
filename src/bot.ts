@@ -1,6 +1,7 @@
 import { Client } from "discord.js"
 import { readdirSync } from "fs"
-import { token } from "./config.json"
+import { config } from "dotenv";
+config()
 
 console.log("\n---\n")
 
@@ -17,4 +18,4 @@ client.once('ready', () => {
     console.log(`\nLogged in as ${client.user?.tag}!`)
 })
 
-client.login(token)
+client.login(process.env.TOKEN)

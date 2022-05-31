@@ -1,6 +1,6 @@
 import { Interaction, Client } from "discord.js"
 import { readdirSync } from "fs"
-import { dev, ticketCategory, epoch, modmail } from "../config.json"
+import { config } from "dotenv"
 
 const commands: {[key: string]: Function} = {}
 
@@ -20,7 +20,7 @@ export async function run(client: Client, interaction: Interaction) {
 
         const command = commands[interaction.commandName]
 
-        if(!command) return interaction.reply(`This command is invalid?\n(DM <@${dev}> if this happens a lot)`)
+        if(!command) return interaction.reply(`This command is invalid?\n(DM <@${process.env.DEVID}> if this happens a lot)`)
         
         try {
             command(interaction, client)
@@ -34,11 +34,11 @@ export async function run(client: Client, interaction: Interaction) {
     } 
 
     if (interaction.isButton()) {
-        interaction.guild?.channels.create(`ticket-${Date.now() - epoch}`, {
+        interaction.guild?.channels.create(`ticket-${Date.now() - Number(process.env.EPOCH)}`, {
             type: "GUILD_TEXT",
-            parent: ticketCategory,
+            parent: process.env.TICKETCATEGORYID,
             permissionOverwrites: [
-                { id: modmail, allow: ["VIEW_CHANNEL"] },
+                { id: process.env.MODMAILROLEID as string, allow: ["VIEW_CHANNEL"] },
                 { id: interaction.guild.id, deny: ["VIEW_CHANNEL"] },
                 { id: interaction.user.id, allow: ["VIEW_CHANNEL"] },
             ]

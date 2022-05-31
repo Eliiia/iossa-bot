@@ -1,8 +1,8 @@
 import { Message, Client, MessageActionRow, MessageButton, MessageEmbed } from "discord.js"
-import { dev } from "../config.json"
+import { config } from "dotenv"
 
 export async function run(client: Client, message: Message) {
-    if (message.content === "create-button" && message.author.id == dev) {
+    if (message.content === "create-button" && message.author.id == process.env.DEVID) {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
