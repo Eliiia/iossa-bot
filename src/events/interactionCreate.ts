@@ -20,10 +20,7 @@ export async function run(client: Client, interaction: Interaction) {
 
         const command = commands[interaction.commandName];
 
-        if (!command)
-            return interaction.reply(
-                `This command is invalid?\n(DM <@${process.env.DEVID}> if this happens a lot)`,
-            );
+        if (!command) return interaction.reply(`Invalid command :(`);
 
         try {
             command(interaction, client);
