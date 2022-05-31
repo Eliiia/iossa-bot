@@ -9,7 +9,7 @@
 import { SlashCommandBuilder } from "@discordjs/builders"
 import { REST } from "@discordjs/rest"
 import { Routes } from "discord-api-types/v9"
-import { token, clientId, mainGuildId, devGuildId } from "./config.json"
+import { config } from "dotenv"
 
 (async () => {
     const commands = {
@@ -32,17 +32,17 @@ import { token, clientId, mainGuildId, devGuildId } from "./config.json"
         ].map(command => command.toJSON())
     }
 
-    const rest = new REST({ version: "9" }).setToken(token)
+    const rest = new REST({ version: "9" }).setToken(process.env.TOKEN as string)
 
     await rest.put(
-        Routes.applicationGuildCommands(clientId, mainGuildId),
+        Routes.applicationGuildCommands(process.env.CLIENTID as string, process.env.GUILDID as string),
         { body: commands.main } 
     )
 
     console.log("Main commands deployed")
 
     await rest.put(
-        Routes.applicationGuildCommands(clientId, devGuildId),
+        Routes.applicationGuildCommands(process.env.CLIENTID as string, process.env.DEVGUILDID as string),
         { body: [ ...commands.dev, ...commands.main ] }
     )
 
